@@ -40,7 +40,7 @@ function BasicSlider(props: IProps) {
     isPlaying,
     canGoNext,
     canGoPrev,
-    startSlideShow,
+    toggleSlideShow,
     nextSlide,
     prevSlide,
   } = useSlider(slides, 1000, mode);
@@ -54,7 +54,7 @@ function BasicSlider(props: IProps) {
       <StyledImg src={slides[currentIndex]} />
       <StyledActions>
         <StyledLeft>
-          <button onClick={startSlideShow}>
+          <button onClick={toggleSlideShow}>
             {isPlaying ? 'Stop' : 'Play'}
           </button>
         </StyledLeft>

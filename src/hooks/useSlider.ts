@@ -2,7 +2,7 @@ import { useState, useRef, useMemo } from 'react';
 interface ReturnPayload {
   isPlaying: boolean;
   currentIndex: number;
-  startSlideShow: () => void;
+  toggleSlideShow: () => void;
   nextSlide: () => void;
   prevSlide: () => void;
   canGoNext: boolean;
@@ -22,7 +22,7 @@ export const useSlider = (
 
   const timer = useRef<any>(null);
 
-  const startSlideShow = () => {
+  const toggleSlideShow = () => {
     setPlaying((playing) => !playing);
     if (timer.current) {
       clearInterval(timer.current);
@@ -66,7 +66,7 @@ export const useSlider = (
   return {
     isPlaying: playing,
     currentIndex,
-    startSlideShow,
+    toggleSlideShow,
     nextSlide,
     prevSlide,
     canGoNext,
