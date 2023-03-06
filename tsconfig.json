@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "type_checking",
+    "sourceMap": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es5",
+    "jsx": "react",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "baseUrl": "src",
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "lib": ["es6", "dom"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}
