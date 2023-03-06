@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { useSlider } from '../../../hooks/useSlider';
+import { useSlider } from '../../../hooks/slides/useSlider';
 
 const ImgWrp = styled.div`
   width: 80%;
@@ -41,8 +41,8 @@ function BasicSlider(props: IProps) {
     canGoNext,
     canGoPrev,
     toggleSlideShow,
-    nextSlide,
-    prevSlide,
+    goNext,
+    goPrev,
   } = useSlider(slides, 1000, mode);
 
   useEffect(() => {
@@ -59,10 +59,10 @@ function BasicSlider(props: IProps) {
           </button>
         </StyledLeft>
         <StyledRight>
-          <button disabled={!canGoPrev} onClick={prevSlide}>
+          <button disabled={!canGoPrev} onClick={goPrev}>
             Prev
           </button>
-          <button disabled={!canGoNext} onClick={nextSlide}>
+          <button disabled={!canGoNext} onClick={goNext}>
             Next
           </button>
         </StyledRight>

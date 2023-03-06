@@ -1,10 +1,13 @@
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef, useMemo, useEffect } from 'react';
+
+import { useInterval } from '../timer/useInterval';
+
 interface ReturnPayload {
   isPlaying: boolean;
   currentIndex: number;
   toggleSlideShow: () => void;
-  nextSlide: () => void;
-  prevSlide: () => void;
+  goNext: () => void;
+  goPrev: () => void;
   canGoNext: boolean;
   canGoPrev: boolean;
 }
@@ -18,26 +21,28 @@ export const useSlider = (
   const [playing, setPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const slideLength = slides.length;
+  const { startInterval, stopInterval } = useInterval(interval, () => {
+    setCurrentIndex((index) => {
+      const nextIndex = ++index;
+      return nextIndex >= slideLength ? 0 : nextIndex;
+    });
+  });
 
-  const timer = useRef<any>(null);
+  const slideLength = slides.length;
 
   const toggleSlideShow = () => {
     setPlaying((playing) => !playing);
-    if (timer.current) {
-      clearInterval(timer.current);
-      timer.current = null;
-      return;
-    }
-    timer.current = setInterval(() => {
-      setCurrentIndex((index) => {
-        const nextIndex = ++index;
-        return nextIndex >= slideLength ? 0 : nextIndex;
-      });
-    }, interval);
   };
 
-  const nextSlide = () => {
+  useEffect(() => {
+    if (playing) {
+      startInterval();
+      return;
+    }
+    stopInterval();
+  }, [playing]);
+
+  const goNext = () => {
     setCurrentIndex((index) => {
       const newIndex = ++index;
       return newIndex >= slideLength
@@ -48,7 +53,7 @@ export const useSlider = (
     });
   };
 
-  const prevSlide = () => {
+  const goPrev = () => {
     setCurrentIndex((index) => {
       const newIndex = --index;
       return newIndex < 0 ? (mode === 'I' ? slideLength - 1 : 0) : newIndex;
@@ -67,8 +72,8 @@ export const useSlider = (
     isPlaying: playing,
     currentIndex,
     toggleSlideShow,
-    nextSlide,
-    prevSlide,
+    goNext,
+    goPrev,
     canGoNext,
     canGoPrev,
   };
