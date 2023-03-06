@@ -45,13 +45,9 @@ function BasicSlider(props: IProps) {
     prevSlide,
   } = useSlider(slides, 1000, mode);
 
-  const timer = useRef<any>(null);
-
-  const [currentPlayingIndex, setCurrentPlayingIndex] = useState<number>(0);
-
   useEffect(() => {
-    console.log(currentPlayingIndex);
-  }, [currentPlayingIndex]);
+    console.log(currentIndex);
+  }, [currentIndex]);
 
   return (
     <ImgWrp>
@@ -63,7 +59,7 @@ function BasicSlider(props: IProps) {
           </button>
         </StyledLeft>
         <StyledRight>
-          <button disabled={canGoPrev} onClick={prevSlide}>
+          <button disabled={!canGoPrev} onClick={prevSlide}>
             Prev
           </button>
           <button disabled={!canGoNext} onClick={nextSlide}>

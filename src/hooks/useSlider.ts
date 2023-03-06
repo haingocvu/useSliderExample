@@ -60,8 +60,8 @@ export const useSlider = (
   }, [mode, currentIndex, slides]);
 
   const canGoPrev = useMemo(() => {
-    return mode === 'N' || currentIndex > 0;
-  }, []);
+    return mode === 'I' || currentIndex > 0;
+  }, [mode, currentIndex]);
 
   return {
     isPlaying: playing,

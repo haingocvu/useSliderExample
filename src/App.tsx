@@ -12,7 +12,7 @@ const sliders = [
 const App: React.FC<{ id?: any }> = () => {
   return (
     <React.Fragment>
-      <Slider mode="I" slides={sliders} />
+      <Slider mode="N" slides={sliders} />
     </React.Fragment>
   );
 };
