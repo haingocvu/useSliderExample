@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './styles/global.css';
 
-import Slider from './components/Slider';
+import Slider from './components/Slider/BasicSlider/BasicSlider';
 
 const sliders = [
   'https://images.unsplash.com/photo-1675679620439-bacfc67a669a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDd8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60',
